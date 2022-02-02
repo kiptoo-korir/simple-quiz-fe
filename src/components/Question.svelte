@@ -4,6 +4,7 @@
   export let question;
   export let qNo;
   export let choices;
+  export let selected;
 </script>
 
 <div>
@@ -11,7 +12,7 @@
   <p class="text-center">{question}</p>
   <div class="choices-container">
     {#each choices as choice, index (index)}
-      <Choice {choice} questionNo={qNo} {index} />
+      <Choice {choice} questionNo={qNo} {index} {selected} on:select-choice />
     {/each}
   </div>
   <!-- {choices.map((choice, choiceNo) => (
@@ -30,6 +31,6 @@
 
 <style>
   .choices-container {
-    padding: 10px 30px;
+    padding: 5px 10px;
   }
 </style>

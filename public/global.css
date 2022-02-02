@@ -114,3 +114,27 @@ h1 {
   margin-left: auto;
   margin-right: auto;
 }
+.choices {
+  appearance: none;
+  -webkit-appearance: none;
+}
+.choices:checked + .choice-label {
+  background-color: #202142;
+  color: white;
+}
+.choice-label {
+  padding: 8px 16px;
+  border: 1px solid black;
+  border-radius: 15px;
+  white-space: nowrap;
+}
+.choice-label:hover {
+  background-color: black;
+  color: white;
+}
+.choice-box {
+  margin-top: 17px;
+}
+.inline-block {
+  display: inline-block;
+}

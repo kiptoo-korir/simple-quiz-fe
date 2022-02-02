@@ -3,7 +3,7 @@
   import Question from "./Question.svelte";
   import Pagination from "./Pagination.svelte";
 
-  let questions = mockQuestion();
+  const questions = mockQuestion();
 
   const shuffleArray = (array) => {
     let arrLength = array.length;
@@ -22,10 +22,19 @@
     currentQuestion.correct_answer,
     ...currentQuestion.incorrect_answers,
   ]);
-  let questionLength = questions.length;
+
+  const questionLength = questions.length;
+  let selectedChoices = Array(questionLength);
+
+  $: selected = selectedChoices[currentQnIndex];
 
   const changeQuestion = (e) => {
     currentQnIndex = e.detail;
+  };
+
+  const selectChoice = (e) => {
+    const { questionNo, choice } = e.detail;
+    selectedChoices[questionNo] = choice;
   };
 </script>
 
@@ -35,6 +44,8 @@
       question={currentQuestion.question}
       qNo={currentQnIndex}
       choices={currentChoices}
+      {selected}
+      on:select-choice={selectChoice}
     />
     <Pagination
       {questionLength}
