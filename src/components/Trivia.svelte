@@ -1,9 +1,8 @@
 <script>
-  import { mockQuestion } from "../services/questionService";
   import Question from "./Question.svelte";
   import Pagination from "./Pagination.svelte";
 
-  const questions = mockQuestion();
+  export let questions;
 
   const shuffleArray = (array) => {
     let arrLength = array.length;

@@ -3,8 +3,8 @@ export const fetchQuestions = async (category, difficulty) => {
     "https://opentdb.com/api.php?amount=10&category=23&difficulty=easy&type=multiple"
   );
   if (response.ok) {
-    const responseBody = await response.json();
-    console.log(responseBody);
+    const { results } = await response.json();
+    return results;
   }
 };
 

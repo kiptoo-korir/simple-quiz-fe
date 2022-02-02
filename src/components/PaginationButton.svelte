@@ -31,6 +31,7 @@
     margin-left: 10px;
     margin-right: 10px;
     transition: scale 0.4s;
+    margin-top: 5px;
   }
 
   .active {
