@@ -15,18 +15,6 @@
       <Choice {choice} questionNo={qNo} {index} {selected} on:select-choice />
     {/each}
   </div>
-  <!-- {choices.map((choice, choiceNo) => (
-    <Choice
-      index={choiceNo}
-      value={choice}
-      answer={answer}
-      questionNo={index}
-      selectAnswer={selectAnswer}
-      selectedChoice={isChecked}
-      changeSelected={changeSelected}
-      key={choiceNo}
-    />
-  ))} -->
 </div>
 
 <style>
