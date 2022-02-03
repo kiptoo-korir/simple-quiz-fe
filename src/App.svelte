@@ -4,18 +4,18 @@
   import { fetchQuestions } from "./services/questionService";
   import { onMount } from "svelte";
 
-  let questions;
+  let realQuestions;
 
   onMount(async () => {
     const results = await fetchQuestions();
-    questions = results;
+    realQuestions = results;
   });
 </script>
 
 <main>
   <div class="app">
-    {#if questions}
-      <Trivia {questions} />
+    {#if realQuestions}
+      <Trivia {realQuestions} />
     {:else}
       <Loading />
     {/if}

@@ -2,25 +2,13 @@
   import Question from "./Question.svelte";
   import Pagination from "./Pagination.svelte";
 
-  export let questions;
+  export let realQuestions;
 
-  const shuffleArray = (array) => {
-    let arrLength = array.length;
-    for (let i = arrLength - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      let temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    }
-    return array;
-  };
+  let questions = realQuestions;
 
   let currentQnIndex = 0;
   $: currentQuestion = questions[currentQnIndex];
-  $: currentChoices = shuffleArray([
-    currentQuestion.correct_answer,
-    ...currentQuestion.incorrect_answers,
-  ]);
+  $: currentChoices = currentQuestion.choices;
 
   const questionLength = questions.length;
   let selectedChoices = Array(questionLength);

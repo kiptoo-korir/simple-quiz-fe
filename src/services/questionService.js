@@ -4,7 +4,21 @@ export const fetchQuestions = async (category, difficulty) => {
   );
   if (response.ok) {
     const { results } = await response.json();
-    return results;
+
+    const questions = results.map((result) => {
+      let choices = shuffleArray([
+        result.correct_answer,
+        ...result.incorrect_answers,
+      ]);
+      return {
+        difficulty: result.difficulty,
+        question: result.question,
+        correct_answer: result.correct_answer,
+        choices,
+      };
+    });
+
+    return questions;
   }
 };
 
@@ -21,4 +35,15 @@ export const mockQuestion = () => {
       incorrect_answers: ["Rome", "Hamburg", "Athens"],
     },
   ];
+};
+
+const shuffleArray = (array) => {
+  let arrLength = array.length;
+  for (let i = arrLength - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    let temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
 };
