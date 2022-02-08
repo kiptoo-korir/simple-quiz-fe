@@ -1,4 +1,5 @@
 <script>
+  import { afterUpdate } from "svelte";
   import { createEventDispatcher } from "svelte";
 
   export let questionNo;
@@ -6,7 +7,7 @@
   export let index;
   export let selected;
 
-  const radioId = `q-${questionNo}-choice-${index}`;
+  const radioId = `choice-${index}`;
 
   let dispatch = createEventDispatcher();
 
@@ -25,7 +26,7 @@
     <input
       type="radio"
       id={radioId}
-      name={`qn-${questionNo}-choice`}
+      name="question-choice"
       value={choice}
       class="choices"
       {checked}
