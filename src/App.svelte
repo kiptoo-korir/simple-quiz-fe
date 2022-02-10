@@ -1,26 +1,26 @@
 <script>
-  import Trivia from "./components/Trivia.svelte";
-  import Loading from "./components/Loading.svelte";
-  import { fetchQuestions } from "./services/questionService";
-  import { onMount } from "svelte";
+  import { Router, Route, Link } from "svelte-routing";
+  import Quiz from "./pages/Quiz.svelte";
+  import Home from "./pages/Home.svelte";
 
-  let realQuestions;
-
-  onMount(async () => {
-    const results = await fetchQuestions();
-    realQuestions = results;
-  });
+  export let url = "";
 </script>
 
-<main>
-  <div class="app">
-    {#if realQuestions}
-      <Trivia {realQuestions} />
-    {:else}
-      <Loading />
-    {/if}
-  </div>
-</main>
+<Router {url}>
+  <main>
+    <div class="app">
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/quiz">quiz</Link>
+      </nav>
+      <div>
+        <Route path="/"><Home /></Route>
+        <Route path="/quiz"><Quiz /></Route>
+      </div>
+    </div>
+    >
+  </main>
+</Router>
 
 <style>
 </style>
