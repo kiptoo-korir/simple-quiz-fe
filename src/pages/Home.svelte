@@ -1,8 +1,41 @@
 <script>
-  const onSubmit = (e) => {};
+  import { QuestionStore } from "../stores/questions";
+  import {
+    shuffleArray,
+    decodeHtmlEntities,
+  } from "../services/questionService";
+  import { navigate } from "svelte-routing";
+
+  const baseUrl = "https://opentdb.com/api.php?amount=10&type=multiple";
 
   let category = "9";
   let difficulty = "easy";
+
+  const onSubmit = async () => {
+    const questionsUrl = `${baseUrl}&category=${category}&difficulty=${difficulty}`;
+
+    // TODO: Catch when response is not ok
+    try {
+      const response = await fetch(questionsUrl);
+      const { results } = await response.json();
+
+      const questions = results.map((result) => {
+        let choices = shuffleArray([
+          result.correct_answer,
+          ...result.incorrect_answers,
+        ]);
+        return {
+          difficulty: result.difficulty,
+          question: decodeHtmlEntities(result.question),
+          correct_answer: result.correct_answer,
+          choices,
+        };
+      });
+
+      QuestionStore.set(questions);
+      navigate("/quiz");
+    } catch (error) {}
+  };
 </script>
 
 <div class="trivia-container">

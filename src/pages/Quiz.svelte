@@ -1,15 +1,21 @@
 <script>
-  import { onMount } from "svelte";
+  import { onDestroy } from "svelte";
   import Trivia from "../components/Trivia.svelte";
   import Loading from "../components/Loading.svelte";
-  import { fetchQuestions } from "../services/questionService";
+  import { QuestionStore } from "../stores/questions";
+  import { navigate } from "svelte-routing";
 
   let questions;
 
-  onMount(async () => {
-    const results = await fetchQuestions();
-    questions = results;
+  const unsubscribe = QuestionStore.subscribe((qns) => {
+    questions = qns;
   });
+
+  onDestroy(unsubscribe);
+
+  if (questions === []) {
+    navigate("/");
+  }
 </script>
 
 <div>

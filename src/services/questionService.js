@@ -37,7 +37,7 @@ export const mockQuestion = () => {
   ];
 };
 
-const shuffleArray = (array) => {
+export const shuffleArray = (array) => {
   let arrLength = array.length;
   for (let i = arrLength - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
