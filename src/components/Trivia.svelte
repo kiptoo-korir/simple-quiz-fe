@@ -23,6 +23,8 @@
     const { questionNo, choice } = e.detail;
     selectedChoices[questionNo] = choice;
   };
+
+  const submitAnswers = () => {};
 </script>
 
 <div class="trivia-container">
@@ -39,5 +41,19 @@
       {currentQnIndex}
       on:change-question={changeQuestion}
     />
+    <div class="card-footer">
+      <button type="button" class="btn-submit">Restart</button>
+      <button type="button" class="btn-submit" on:click={submitAnswers}
+        >Submit</button
+      >
+    </div>
   </div>
 </div>
+
+<style>
+  .card-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+</style>

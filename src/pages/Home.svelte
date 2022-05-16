@@ -95,20 +95,6 @@
   }
 
   .btn-submit {
-    margin: 1.5rem auto;
-    display: block;
-    border-radius: 10px;
-    background-color: #052e33;
-    color: white;
-    font-size: 100%;
-    padding: 1rem;
-    transition: background-color 0.4s;
-  }
-
-  .btn-submit:hover {
-    background-color: white;
-    border: 1px solid #052e33;
-    color: #052e33;
-    box-shadow: 0 5px 5px rgb(5, 46, 51, 0.1);
+    margin: 1.5rem auto !important;
   }
 </style>
